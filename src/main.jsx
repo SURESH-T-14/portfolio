@@ -43,10 +43,26 @@ function App() {
   const [activeProject, setActiveProject] = useState(null);
   const [certPage, setCertPage] = useState(0);
   const [activeCertificate, setActiveCertificate] = useState(null);
+  const [loadedCertPreviewIndexes, setLoadedCertPreviewIndexes] = useState(() => new Set([0]));
   const letters = personal.wordmark.split('');
   const certPageSize = 6;
   const certPages = Math.ceil(certificateEntries.length / certPageSize);
   const visibleCerts = certificateEntries.slice(certPage * certPageSize, certPage * certPageSize + certPageSize);
+
+  useEffect(() => {
+    const start = certPage * certPageSize;
+    setLoadedCertPreviewIndexes((prev) => {
+      const next = new Set(prev);
+      for (let i = 0; i < Math.min(2, visibleCerts.length); i += 1) {
+        next.add(start + i);
+      }
+      return next;
+    });
+  }, [certPage, visibleCerts.length]);
+
+  const loadCertPreview = (index) => {
+    setLoadedCertPreviewIndexes((prev) => new Set(prev).add(index));
+  };
 
   useEffect(() => {
     const imageUrls = [
@@ -443,15 +459,34 @@ function App() {
             <div className="cert-room__grid">
               {visibleCerts.map((cert, i) => {
                 const index = certPage * certPageSize + i;
+                const previewLoaded = loadedCertPreviewIndexes.has(index);
                 return (
-                  <button className="cert-room__frame" type="button" key={cert.file} style={{ '--cert-index': i }} onClick={() => setActiveCertificate(index)}>
-                    <iframe
-                      className="cert-preview"
-                      title={`${cert.title} preview`}
-                      src={`./media/certificates/${encodeURIComponent(cert.file)}#toolbar=0&navpanes=0&scrollbar=0`}
-                      tabIndex="-1"
-                      loading="eager"
-                    />
+                  <button
+                    className="cert-room__frame"
+                    type="button"
+                    key={cert.file}
+                    style={{ '--cert-index': i }}
+                    onClick={() => {
+                      loadCertPreview(index);
+                      setActiveCertificate(index);
+                    }}
+                    onMouseEnter={() => loadCertPreview(index)}
+                    onFocus={() => loadCertPreview(index)}
+                  >
+                    {previewLoaded ? (
+                      <iframe
+                        className="cert-preview"
+                        title={`${cert.title} preview`}
+                        src={`./media/certificates/${encodeURIComponent(cert.file)}#toolbar=0&navpanes=0&scrollbar=0`}
+                        tabIndex="-1"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="cert-preview cert-preview--placeholder">
+                        <span>{cert.title}</span>
+                        <small>Preview</small>
+                      </div>
+                    )}
                     <span>{cert.title} <b>↗</b></span>
                   </button>
                 );

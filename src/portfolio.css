@@ -626,6 +626,12 @@ img, video { display: block; max-width: 100%; }
 .cert-room__frame.is-revealed { animation: projectRise .7s var(--ease-out) both; animation-delay: calc(var(--cert-index, 0) * .1s); }
 .cert-room__frame:hover, .cert-room__frame:focus-visible { transform: translateY(-.6cqw) rotate(1deg); border-color: #ffe0a1; box-shadow: 0 0 1.2cqw #ffb65daa, 0 1.2cqw 2cqw #000b; }
 .cert-room__frame .cert-preview { display: block; width: 100%; height: 7.5cqw; border: 0; background: #e9e3d9; pointer-events: none; }
+.cert-room__frame .cert-preview--placeholder {
+  display: grid; place-items: center; gap: .35cqw; background: linear-gradient(145deg, #221c18, #0d0d0d);
+  border: 1px solid rgba(208, 166, 94, .46); color: #edd6ad; text-align: center; padding: .6cqw;
+}
+.cert-room__frame .cert-preview--placeholder span { font-size: .66cqw; letter-spacing: .08em; text-transform: uppercase; }
+.cert-room__frame .cert-preview--placeholder small { font-size: .52cqw; letter-spacing: .2em; text-transform: uppercase; color: #c5b293; }
 .cert-room__frame > span { display: flex; justify-content: space-between; align-items: center; font-size: .57cqw; margin-top: .5cqw; }
 .cert-room__browse { display: flex; justify-content: space-between; align-items: center; margin: .8cqw 0 1.1cqw; }
 .cert-room__browse > span { font-size: .55cqw; color: #ddbf92; text-transform: uppercase; letter-spacing: .2em; }
