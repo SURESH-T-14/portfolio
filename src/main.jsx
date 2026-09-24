@@ -49,6 +49,30 @@ function App() {
   const visibleCerts = certificateEntries.slice(certPage * certPageSize, certPage * certPageSize + certPageSize);
 
   useEffect(() => {
+    const imageUrls = [
+      ...Object.values(backgrounds),
+      ...journeyYears.map((year) => year.image),
+      ...projects.map((project) => project.image)
+    ].filter((url) => !url.endsWith('.mp4'));
+    const certificateUrls = certificateEntries.map((certificate) => `./media/certificates/${encodeURIComponent(certificate.file)}`);
+    const warmImages = () => imageUrls.forEach((url) => {
+      const image = new Image();
+      image.decoding = 'async';
+      image.src = url;
+    });
+    const warmCertificates = () => certificateUrls.forEach((url) => {
+      fetch(url, { cache: 'force-cache' }).catch(() => {});
+    });
+    const idle = window.requestIdleCallback || ((callback) => window.setTimeout(callback, 120));
+    const imageTask = idle(warmImages);
+    const certificateTask = window.setTimeout(warmCertificates, 350);
+    return () => {
+      if (window.cancelIdleCallback) window.cancelIdleCallback(imageTask);
+      window.clearTimeout(certificateTask);
+    };
+  }, []);
+
+  useEffect(() => {
     let frame = 0;
     const tick = () => {
       frame += 1;
@@ -267,7 +291,7 @@ function App() {
                       aria-label={`${year.year} — ${year.key}`}
                     >
                       <span className="yr__frame">
-                        <img className="yr__img" src={year.image} alt="" />
+                        <img className="yr__img" src={year.image} alt="" loading="eager" decoding="async" />
                         <span className="yr__body">
                           <span className="yr__year">{year.year}</span>
                           <span className="yr__key">{year.key}</span>
@@ -385,7 +409,7 @@ function App() {
                       style={{ '--screen-accent': project.accent }}
                       onClick={() => setActiveProject(project)}
                     >
-                      <img src={project.image} alt="" className="experience__project-image" />
+                      <img src={project.image} alt="" className="experience__project-image" loading="eager" decoding="async" />
                       <span className="experience__project-index">{String(project.id).padStart(2, '0')}</span>
                       <span className="experience__project-category">{project.category}</span>
                       <span className="experience__project-label">{project.name}</span>
@@ -423,6 +447,7 @@ function App() {
                       title={`${cert.title} preview`}
                       src={`./media/certificates/${encodeURIComponent(cert.file)}#toolbar=0&navpanes=0&scrollbar=0`}
                       tabIndex="-1"
+                      loading="eager"
                     />
                     <span>{cert.title} <b>↗</b></span>
                   </button>
