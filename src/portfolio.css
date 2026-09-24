@@ -718,8 +718,17 @@ img, video { display: block; max-width: 100%; }
   .skills-heading h2 { font-size: 64px; }
   .skills-scene__subtitle { font-size: 10px; }
   .skills-grid { grid-template-columns: 1fr; }
-  .skill-card { padding: 16px; transform: translateY(-42px) rotate(0); transition-duration: .42s; transition-delay: calc(var(--order, 0) * .045s); }
-  .skill-card.is-revealed { transform: translateY(0) rotate(0); }
+  .skill-card {
+    padding: 16px;
+    transform: translateY(6px) rotate(0);
+    transition-duration: .68s;
+    transition-delay: calc(var(--order, 0) * .07s);
+  }
+  .skill-card.is-revealed {
+    transform: translateY(0) rotate(0);
+    animation: projectRise .92s cubic-bezier(.2, .8, .18, 1) both;
+    animation-delay: calc(var(--order, 0) * .08s);
+  }
   .skill-number, .skill-card h3, .skill-card header p, .skill-card li > span, .skill-symbol b { font-size: 14px; }
   .skill-symbol { height: 48px; }
   .skill-symbol img { width: 32px; height: 32px; }
@@ -731,18 +740,27 @@ img, video { display: block; max-width: 100%; }
   .journey h2 { font-size: 42px; }
   .journey__timeline::before { left: 53px; }
   .journey__milestone { padding-left: 74px; }
-  .journey__milestone.is-from-left.is-revealed, .journey__milestone.is-from-right.is-revealed { animation-duration: .6s; }
+  .journey__milestone.is-from-left.is-revealed, .journey__milestone.is-from-right.is-revealed {
+    animation-duration: 1s;
+    animation-delay: calc(var(--card-index, 0) * .14s);
+  }
   .journey__date { font-size: 20px; }
   .experience__note { display: none; }
   .experience__world { width: 1200px; }
   .experience__viewport { overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; touch-action: pan-x pan-y; }
-  .experience__card-layer.is-revealed { animation-duration: .6s; animation-delay: calc(var(--project-index, 0) * .055s); }
+  .experience__card-layer.is-revealed {
+    animation-duration: 1.05s;
+    animation-delay: calc(var(--project-index, 0) * .1s);
+  }
   .cert-room { aspect-ratio: auto; padding: 0 20px 28px; }
   .cert-room__backdrop { height: min(70svh, 560px); }
   .cert-room__intro, .cert-room__wall { position: relative; inset: auto; width: 100%; transform: none; }
   .cert-room h2 { font-size: 42px; }
   .cert-room__grid { grid-template-columns: 1fr 1fr; }
-  .cert-room__frame.is-revealed { animation-duration: .55s; animation-delay: calc(var(--cert-index, 0) * .05s); }
+  .cert-room__frame.is-revealed {
+    animation-duration: .94s;
+    animation-delay: calc(var(--cert-index, 0) * .1s);
+  }
   .skill-card:active, .journey__card:active, .cert-room__frame:active { transform: translateY(-4px) scale(.985); }
   .contact { aspect-ratio: auto; }
   .contact__portrait img { height: 70svh; }
