@@ -33,6 +33,8 @@ export default function HeroStage({ wordText, imageSrc, active }) {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
+    const startTime = performance.now();
+
     const rebuildWord = () => {
       const layout = computeLayout(window.innerWidth, window.innerHeight);
       const dpr = Math.min(window.devicePixelRatio || 1, 1.75);
@@ -115,8 +117,21 @@ export default function HeroStage({ wordText, imageSrc, active }) {
         const scale = Math.min(boxWidth / image.naturalWidth, boxHeight / image.naturalHeight);
         const imageWidth = image.naturalWidth * scale;
         const imageHeight = image.naturalHeight * scale;
-        const imageX = layout.hero.cx - imageWidth / 2;
-        const imageY = layout.hero.feet - imageHeight;
+        const finalX = layout.hero.cx - imageWidth / 2;
+        const finalY = layout.hero.feet - imageHeight;
+
+        const walkProgress = active ? Math.min((performance.now() - startTime) / 1900, 1) : 1;
+        const easedWalk = 1 - Math.pow(1 - walkProgress, 3);
+        const fromLeft = -imageWidth - 24;
+        const imageX = fromLeft + (finalX - fromLeft) * easedWalk;
+        const bobOffset = Math.sin(walkProgress * Math.PI * 8) * 6 * (1 - walkProgress * 0.6);
+        const imageY = finalY + bobOffset;
+
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.36)';
+        ctx.beginPath();
+        ctx.ellipse(finalX + imageWidth / 2, finalY + imageHeight + 20, imageWidth * 0.38, imageHeight * 0.1, 0, 0, Math.PI * 2);
+        ctx.fill();
+
         ctx.drawImage(image, imageX, imageY, imageWidth, imageHeight);
       }
 
