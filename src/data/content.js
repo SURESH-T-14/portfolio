@@ -91,11 +91,11 @@ export const skillGroups = [
     title: 'Build & Stack',
     tagline: 'Code into products',
     items: [
-      { name: 'Java', mark: 'Ja', color: '#f89820' },
-      { name: 'Spring Boot', mark: 'SB', color: '#6db33f' },
-      { name: 'React', mark: 'Re', color: '#61dafb' },
-      { name: 'JavaScript', mark: 'JS', color: '#f7df1e' },
-      { name: 'Node.js', mark: 'No', color: '#75bd49' }
+      { name: 'Java', mark: 'Ja', color: '#f89820', icon: '/media/skill-icons/java-logo.png' },
+      { name: 'Spring Boot', mark: 'SB', color: '#6db33f', icon: '/media/skill-icons/icons8-spring-boot-48.png' },
+      { name: 'React', mark: 'Re', color: '#61dafb', icon: '/media/skill-icons/icons8-react-40.png' },
+      { name: 'JavaScript', mark: 'JS', color: '#f7df1e', icon: '/media/skill-icons/java-script.png' },
+      { name: 'Node.js', mark: 'No', color: '#75bd49', icon: '/media/skill-icons/icons8-nodejs-48.png' }
     ]
   },
   {
@@ -103,11 +103,11 @@ export const skillGroups = [
     title: 'Backend',
     tagline: 'Build. Integrate. Scale.',
     items: [
-      { name: 'Python', mark: 'Py', color: '#ffd34b' },
-      { name: 'REST APIs', mark: 'API', color: '#9ebad8' },
-      { name: 'MySQL', mark: 'SQL', color: '#4479a1' },
-      { name: 'MongoDB', mark: 'Mg', color: '#4db33d' },
-      { name: 'PostgreSQL', mark: 'PG', color: '#6599ca' }
+      { name: 'Python', mark: 'Py', color: '#ffd34b', icon: '/media/skill-icons/icons8-python-48.png' },
+      { name: 'REST APIs', mark: 'API', color: '#9ebad8', icon: '/media/skill-icons/icons8-rest-api-50.png' },
+      { name: 'MySQL', mark: 'SQL', color: '#4479a1', icon: '/media/skill-icons/icons8-my-sql-48.png' },
+      { name: 'MongoDB', mark: 'Mg', color: '#4db33d', icon: '/media/skill-icons/icons8-mongo-db-48.png' },
+      { name: 'PostgreSQL', mark: 'PG', color: '#6599ca', icon: '/media/skill-icons/icons8-postgresql-48.png' }
     ]
   },
   {
@@ -115,11 +115,11 @@ export const skillGroups = [
     title: 'Frontend',
     tagline: 'Pixels to products',
     items: [
-      { name: 'React', mark: 'Re', color: '#61dafb' },
-      { name: 'HTML5', mark: 'H5', color: '#e34f26' },
-      { name: 'CSS3', mark: 'C3', color: '#1572b6' },
-      { name: 'JavaScript', mark: 'JS', color: '#f7df1e' },
-      { name: 'TypeScript', mark: 'TS', color: '#3178c6' }
+      { name: 'React', mark: 'Re', color: '#61dafb', icon: '/media/skill-icons/icons8-react-40.png' },
+      { name: 'HTML5', mark: 'H5', color: '#e34f26', icon: '/media/skill-icons/icons8-html-5-48.png' },
+      { name: 'CSS3', mark: 'C3', color: '#1572b6', icon: '/media/skill-icons/icons8-css3-48.png' },
+      { name: 'JavaScript', mark: 'JS', color: '#f7df1e', icon: '/media/skill-icons/java-script.png' },
+      { name: 'TypeScript', mark: 'TS', color: '#3178c6', icon: '/media/skill-icons/icons8-typescript-50.png' }
     ]
   },
   {
@@ -127,11 +127,11 @@ export const skillGroups = [
     title: 'AI & Cloud',
     tagline: 'Think. Build. Automate.',
     items: [
-      { name: 'Gemini', mark: 'G', color: '#8ab4f8' },
-      { name: 'OpenCV', mark: 'CV', color: '#5c9fd6' },
-      { name: 'AWS', mark: 'AWS', color: '#ff9900' },
-      { name: 'Docker', mark: 'Dk', color: '#2496ed' },
-      { name: 'GitHub Actions', mark: 'GA', color: '#2088ff' }
+      { name: 'Gemini', mark: 'G', color: '#8ab4f8', icon: '/media/skill-icons/icons8-gemini-ai-48.png' },
+      { name: 'OpenCV', mark: 'CV', color: '#5c9fd6', icon: '/media/skill-icons/icons8-cv-30.png' },
+      { name: 'AWS', mark: 'AWS', color: '#ff9900', icon: '/media/skill-icons/icons8-aws-48.png' },
+      { name: 'Docker', mark: 'Dk', color: '#2496ed', icon: '/media/skill-icons/icons8-docker-48.png' },
+      { name: 'GitHub Actions', mark: 'GA', color: '#2088ff', icon: '/media/skill-icons/icons8-githubAction-48.png' }
     ]
   },
   {
@@ -139,11 +139,11 @@ export const skillGroups = [
     title: 'Tools & Others',
     tagline: 'Plan. Collaborate. Ship.',
     items: [
-      { name: 'Git', mark: 'Git', color: '#f05032' },
-      { name: 'GitHub', mark: 'GH', color: '#e8e8e8' },
-      { name: 'VS Code', mark: 'VS', color: '#007acc' },
-      { name: 'Linux', mark: 'Lx', color: '#fcc624' },
-      { name: 'Postman', mark: 'Pm', color: '#ff6c37' }
+      { name: 'Git', mark: 'Git', color: '#f05032', icon: '/media/skill-icons/icons8-git-48.png' },
+      { name: 'GitHub', mark: 'GH', color: '#e8e8e8', icon: '/media/skill-icons/icons8-github-50.png' },
+      { name: 'VS Code', mark: 'VS', color: '#007acc', icon: '/media/skill-icons/icons8-vs-code-48.png' },
+      { name: 'Linux', mark: 'Lx', color: '#fcc624', icon: '/media/skill-icons/icons8-linux-48.png' },
+      { name: 'Postman', mark: 'Pm', color: '#ff6c37', icon: '/media/skill-icons/icons8-postman-inc-24.png' }
     ]
   },
   {

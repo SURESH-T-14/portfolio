@@ -52,7 +52,8 @@ function App() {
     const imageUrls = [
       ...Object.values(backgrounds),
       ...journeyYears.map((year) => year.image),
-      ...projects.map((project) => project.image)
+      ...projects.map((project) => project.image),
+      ...skillGroups.flatMap((group) => group.items.map((item) => item.icon).filter(Boolean))
     ].filter((url) => !url.endsWith('.mp4'));
     const certificateUrls = certificateEntries.map((certificate) => `./media/certificates/${encodeURIComponent(certificate.file)}`);
     const warmImages = () => imageUrls.forEach((url) => {
@@ -332,7 +333,9 @@ function App() {
                     <ul style={{ '--items': group.items.length }}>
                       {group.items.map((item) => (
                         <li key={item.name}>
-                          <div className="skill-symbol" style={{ color: item.color }}><b>{item.mark}</b></div>
+                          <div className="skill-symbol" style={{ color: item.color }}>
+                            {item.icon ? <img src={item.icon} alt="" loading="eager" decoding="async" /> : <b>{item.mark}</b>}
+                          </div>
                           <span>{item.name}</span>
                         </li>
                       ))}

@@ -508,6 +508,7 @@ img, video { display: block; max-width: 100%; }
   border: 1px solid #ac87551a; background: linear-gradient(145deg, #090a08, #070706);
   border-radius: .55cqw;
 }
+.skill-symbol img { width: 2.45cqw; height: 2.45cqw; object-fit: contain; image-rendering: auto; }
 .skill-symbol b { font: 600 1.05cqw/1 Oswald, Arial, sans-serif; }
 .skill-card li > span { display: block; font-size: .67cqw; line-height: 1.25; margin-top: .45cqw; color: #eee5d8; }
 .skills-portrait-caption { position: absolute; z-index: 1; left: 5%; bottom: 4%; color: #f4e3c9; text-shadow: 0 2px 10px #000; }
@@ -715,6 +716,7 @@ img, video { display: block; max-width: 100%; }
   .skill-card.is-revealed { transform: translateY(0) rotate(0); }
   .skill-number, .skill-card h3, .skill-card header p, .skill-card li > span, .skill-symbol b { font-size: 14px; }
   .skill-symbol { height: 48px; }
+  .skill-symbol img { width: 32px; height: 32px; }
   .skills-portrait-caption { left: 16px; bottom: 24px; }
   .skills-portrait-caption p { font-size: 22px; }
   .journey { aspect-ratio: auto; display: flex; flex-direction: column; }
