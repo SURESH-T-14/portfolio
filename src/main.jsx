@@ -43,6 +43,7 @@ function App() {
   const [activeProject, setActiveProject] = useState(null);
   const [certPage, setCertPage] = useState(0);
   const [activeCertificate, setActiveCertificate] = useState(null);
+  const [isMobileViewport, setIsMobileViewport] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 900 : false);
   const [loadedCertPreviewIndexes, setLoadedCertPreviewIndexes] = useState(() => new Set([0]));
   const letters = personal.wordmark.split('');
   const certPageSize = 6;
@@ -50,15 +51,23 @@ function App() {
   const visibleCerts = certificateEntries.slice(certPage * certPageSize, certPage * certPageSize + certPageSize);
 
   useEffect(() => {
+    const onResize = () => setIsMobileViewport(window.innerWidth < 900);
+    onResize();
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  useEffect(() => {
     const start = certPage * certPageSize;
+    const preloadCount = isMobileViewport ? 1 : 2;
     setLoadedCertPreviewIndexes((prev) => {
       const next = new Set(prev);
-      for (let i = 0; i < Math.min(2, visibleCerts.length); i += 1) {
+      for (let i = 0; i < Math.min(preloadCount, visibleCerts.length); i += 1) {
         next.add(start + i);
       }
       return next;
     });
-  }, [certPage, visibleCerts.length]);
+  }, [certPage, visibleCerts.length, isMobileViewport]);
 
   const loadCertPreview = (index) => {
     setLoadedCertPreviewIndexes((prev) => new Set(prev).add(index));
