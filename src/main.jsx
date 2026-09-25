@@ -20,7 +20,8 @@ const navItems = [
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
   { label: 'Certifications', href: '#certifications' },
-  { label: 'Contact', href: '#contact' }
+  { label: 'Contact', href: '#contact' },
+  { label: 'Resume', href: '#resume' }
 ];
 
 const yearLayout = [
@@ -125,7 +126,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const ids = ['home', 'chrono', 'skills', 'experience', 'projects', 'certifications', 'contact'];
+    const ids = ['home', 'chrono', 'skills', 'experience', 'projects', 'certifications', 'contact', 'resume'];
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
@@ -560,6 +561,21 @@ function App() {
             </div>
           </div>
           <p className="contact__location">{personal.location} <span /></p>
+        </section>
+
+        <section className="resume-page" id="resume" aria-labelledby="resumeTitle">
+          <div className="resume-page__intro">
+            <p className="resume-page__eyebrow">07 / Resume</p>
+            <h2 id="resumeTitle">The full<br /><span>story.</span></h2>
+            <p>View my experience, skills, education, and achievements in one place.</p>
+            <div className="resume-page__actions">
+              <a href="/media/sureshresume1.pdf" target="_blank" rel="noreferrer">Open resume <span>↗</span></a>
+              <a href="/media/sureshresume1.pdf" download>Download PDF <span>↓</span></a>
+            </div>
+          </div>
+          <div className="resume-page__frame">
+            <iframe title="Suresh resume" src="/media/sureshresume1.pdf#toolbar=0&navpanes=0&scrollbar=0" loading="lazy" />
+          </div>
         </section>
       </main>
 
